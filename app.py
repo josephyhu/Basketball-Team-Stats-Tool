@@ -32,9 +32,10 @@ def teams_menu():
 
     while select_team:
         print("Teams Menu:\n")
+        print("0. Main menu")
         for index in range(len(constants.TEAMS)):
             print("{}. {}".format(index + 1, constants.TEAMS[index]))
-        option = input("\nSelect a team, or enter 0 to quit to the main menu: ")
+        option = input("\nSelect an option: ")
         print("\n")
         try:
             if option.isdigit() is True:
