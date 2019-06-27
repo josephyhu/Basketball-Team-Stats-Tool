@@ -1,6 +1,8 @@
 import constants
 import random
 
+ALL = list(range(0, 18))
+
 
 def main_menu():
     select_option = True
@@ -52,15 +54,17 @@ def teams_menu():
 def teams():
     num_players = 0
     team = []
-    names = []
+    nums = set()
 
-    team = random.sample(constants.PLAYERS, 6)
+    while len(nums) < 6:
+        nums.add(random.choice(ALL))
 
-    for index in range(0, 6):
-        names.append(team[index]["name"])
+    for num in nums:
+        team.append(constants.PLAYERS[num]["name"])
         num_players += 1
+        ALL.remove(num)
 
-    return num_players, names
+    return num_players, team
 
 
 def continue_or_quit():
@@ -107,6 +111,14 @@ def stats():
     print("Players: {}\n".format(", ".join(team)))
 
 
+def members_available():
+    members_available = True
+
+    if len(ALL) == 0:
+        members_available = False
+    return members_available
+
+
 if __name__ == "__main__":
     print("Basketball Team Stats Tool\n\n")
     team_selected = False
@@ -117,6 +129,8 @@ if __name__ == "__main__":
                 select_team = teams_menu()
                 if select_team == 1:
                     print("Team: {}\n".format(constants.TEAMS[0]))
+                    if not members_available():
+                        ALL = list(range(0, 18))
                     stats()
                     if continue_or_quit() == 'c':
                         continue
@@ -124,6 +138,8 @@ if __name__ == "__main__":
                         break
                 elif select_team == 2:
                     print("Team: {}\n".format(constants.TEAMS[1]))
+                    if not members_available():
+                        ALL = list(range(0, 18))
                     stats()
                     if continue_or_quit() == 'c':
                         continue
@@ -131,6 +147,8 @@ if __name__ == "__main__":
                         break
                 elif select_team == 3:
                     print("Team: {}\n".format(constants.TEAMS[2]))
+                    if not members_available():
+                        ALL = list(range(0, 18))
                     stats()
                     if continue_or_quit() == 'c':
                         continue
