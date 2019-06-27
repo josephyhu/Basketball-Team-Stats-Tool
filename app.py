@@ -16,11 +16,11 @@ def main_menu():
             if option.isdigit() is True:
                 option = int(option)
                 if option != 1 and option != 2:
-                    raise ValueError("The available choices are 1 and 2.")
+                    raise ValueError("Please enter 1 or 2.")
             else:
-                raise ValueError("The available choices are 1 and 2.")
+                raise ValueError("Please enter 1 or 2.")
         except ValueError as err:
-            print("Invalid input. Please try again.")
+            print("Invalid input.")
             print("({})\n".format(err))
             continue
         else:
@@ -34,17 +34,17 @@ def teams_menu():
         print("Teams Menu:\n")
         for index in range(len(constants.TEAMS)):
             print("{}. {}".format(index + 1, constants.TEAMS[index]))
-        option = input("\nSelect a team: ")
+        option = input("\nSelect a team, or enter 0 to quit to the main menu: ")
         print("\n")
         try:
             if option.isdigit() is True:
                 option = int(option)
-                if option != 1 and option != 2 and option != 3:
-                    raise ValueError("The available choices are 1, 2, and 3.")
+                if option != 0 and option != 1 and option != 2 and option != 3:
+                    raise ValueError("Please enter 0, 1, 2, or 3.")
             else:
-                raise ValueError("The available choices are 1, 2, and 3.")
+                raise ValueError("Please enter 0, 1, 2, or 3.")
         except ValueError as err:
-            print("Invalid input. Please try again.")
+            print("Invalid input.")
             print("({})\n".format(err))
             continue
         else:
@@ -68,12 +68,12 @@ def teams():
 
 
 def continue_or_quit():
-    continue_or_quit = input("\nPress c to continue or q to quit. ")
+    continue_or_quit = input("\nEnter c to continue or q to quit. ")
     print("\n")
 
     while continue_or_quit.lower() != 'c' and continue_or_quit.lower() != 'q':
         print("Invalid input.")
-        continue_or_quit = input("Press c to continue or q to quit. ")
+        continue_or_quit = input("Enter c to continue or q to quit. ")
         print("\n")
 
     return continue_or_quit.lower()
@@ -130,7 +130,9 @@ if __name__ == "__main__":
         if option == 1:
             while not team_selected:
                 select_team = teams_menu()
-                if select_team == 1:
+                if select_team == 0:
+                    break
+                elif select_team == 1:
                     print("Team: {}\n".format(constants.TEAMS[0]))
                     members_available()
                     stats()
