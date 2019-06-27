@@ -116,6 +116,7 @@ def members_available():
 
     if len(ALL) == 0:
         members_available = False
+
     return members_available
 
 
