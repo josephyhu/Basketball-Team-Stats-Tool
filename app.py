@@ -9,7 +9,7 @@ def main_menu():
 
     while select_option:
         print("Main Menu:\n")
-        print("1. Display stats\n2. Quit\n")
+        print("1. Display Stats\n2. Quit\n")
         option = input("Select an option: ")
         print("\n")
         try:
@@ -32,7 +32,7 @@ def teams_menu():
 
     while select_team:
         print("Teams Menu:\n")
-        print("0. Main menu")
+        print("0. Main Menu")
         for index in range(len(constants.TEAMS)):
             print("{}. {}".format(index + 1, constants.TEAMS[index]))
         option = input("\nSelect an option: ")
