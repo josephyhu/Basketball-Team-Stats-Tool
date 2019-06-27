@@ -13,7 +13,7 @@ def main_menu():
         option = input("Select an option: ")
         print("\n")
         try:
-            if option.isdigit() is True:
+            if option.isdigit():
                 option = int(option)
                 if option != 1 and option != 2:
                     raise ValueError("Please enter 1 or 2.")
@@ -38,7 +38,7 @@ def teams_menu():
         option = input("\nSelect an option: ")
         print("\n")
         try:
-            if option.isdigit() is True:
+            if option.isdigit():
                 option = int(option)
                 if option != 0 and option != 1 and option != 2 and option != 3:
                     raise ValueError("Please enter 0, 1, 2, or 3.")
@@ -114,12 +114,8 @@ def stats():
 
 def members_available():
     global ALL
-    members_available = True
 
     if len(ALL) == 0:
-        members_available = False
-
-    if not members_available:
         ALL = list(range(0, 18))
 
 
