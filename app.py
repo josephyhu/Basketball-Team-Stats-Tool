@@ -1,8 +1,6 @@
 import constants
 import random
 
-ALL = list(range(0, 18))
-
 
 def main_menu():
     select_option = True
@@ -54,17 +52,15 @@ def teams_menu():
 def teams():
     num_players = 0
     team = []
-    nums = set()
+    names = []
 
-    while len(nums) < 6:
-        nums.add(random.choice(ALL))
+    team = random.sample(constants.PLAYERS, 6)
 
-    for num in nums:
-        team.append(constants.PLAYERS[num]["name"])
+    for index in range(0, 6):
+        names.append(team[index]["name"])
         num_players += 1
-        ALL.remove(num)
 
-    return num_players, team
+    return num_players, names
 
 
 def continue_or_quit():
@@ -105,6 +101,12 @@ def convert_experience():
         converted_experienced.append(experienced[index])
 
 
+def stats():
+    num_players, team = teams()
+    print("Total players: {}\n".format(num_players))
+    print("Players: {}\n".format(", ".join(team)))
+
+
 if __name__ == "__main__":
     print("Basketball Team Stats Tool\n\n")
     team_selected = False
@@ -115,27 +117,21 @@ if __name__ == "__main__":
                 select_team = teams_menu()
                 if select_team == 1:
                     print("Team: {}\n".format(constants.TEAMS[0]))
-                    num_players, team = teams()
-                    print("Total players: {}\n".format(num_players))
-                    print("Players: {}\n".format(", ".join(team)))
+                    stats()
                     if continue_or_quit() == 'c':
                         continue
                     else:
                         break
                 elif select_team == 2:
                     print("Team: {}\n".format(constants.TEAMS[1]))
-                    num_players, team = teams()
-                    print("Total players: {}\n".format(num_players))
-                    print("Players: {}\n".format(", ".join(team)))
+                    stats()
                     if continue_or_quit() == 'c':
                         continue
                     else:
                         break
                 elif select_team == 3:
                     print("Team: {}\n".format(constants.TEAMS[2]))
-                    num_players, team = teams()
-                    print("Total players: {}\n".format(num_players))
-                    print("Players: {}\n".format(", ".join(team)))
+                    stats()
                     if continue_or_quit() == 'c':
                         continue
                     else:
