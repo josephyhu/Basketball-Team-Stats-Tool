@@ -112,12 +112,14 @@ def stats():
 
 
 def members_available():
+    global ALL
     members_available = True
 
     if len(ALL) == 0:
         members_available = False
 
-    return members_available
+    if not members_available:
+        ALL = list(range(0, 18))
 
 
 if __name__ == "__main__":
@@ -130,8 +132,7 @@ if __name__ == "__main__":
                 select_team = teams_menu()
                 if select_team == 1:
                     print("Team: {}\n".format(constants.TEAMS[0]))
-                    if not members_available():
-                        ALL = list(range(0, 18))
+                    members_available()
                     stats()
                     if continue_or_quit() == 'c':
                         continue
@@ -139,8 +140,7 @@ if __name__ == "__main__":
                         break
                 elif select_team == 2:
                     print("Team: {}\n".format(constants.TEAMS[1]))
-                    if not members_available():
-                        ALL = list(range(0, 18))
+                    members_available()
                     stats()
                     if continue_or_quit() == 'c':
                         continue
@@ -148,8 +148,7 @@ if __name__ == "__main__":
                         break
                 elif select_team == 3:
                     print("Team: {}\n".format(constants.TEAMS[2]))
-                    if not members_available():
-                        ALL = list(range(0, 18))
+                    members_available()
                     stats()
                     if continue_or_quit() == 'c':
                         continue
