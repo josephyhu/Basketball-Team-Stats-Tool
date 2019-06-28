@@ -2,6 +2,8 @@ import constants
 import random
 import copy
 
+# Removed the global ALL, replaced with local all_numbers.
+
 
 def main_menu():
     select_option = True
@@ -52,6 +54,7 @@ def teams_menu():
 
 
 def add_players():
+    # Made a copy of all_numbers.
     all = copy.deepcopy(all_numbers)
     num_players = 0
     team = []
@@ -91,7 +94,7 @@ def convert_heights():
         converted_heights.append(int(heights[index][0]))
 
 
-def convert_experience():
+def convert_experiences():
     experienced = []
     converted_experienced = []
 
@@ -113,17 +116,21 @@ def stats():
 
 
 def members_available():
+    # Made a copy of all_numbers
     all = copy.deepcopy(all_numbers)
     if len(all) == 0:
         all = list(range(0, 18))
 
 
 if __name__ == "__main__":
+    all_numbers = list(range(0, 18))
+    # Made copies of the constants.TEAMS and constants.PLAYERS
     teams = copy.deepcopy(constants.TEAMS)
     players = copy.deepcopy(constants.PLAYERS)
-    all_numbers = list(range(0, 18))
+    # Called the functions that converts heights and experiences respectively.
+    # Not sure what else to do with them for meets expectations grade though.
     convert_heights()
-    convert_experience()
+    convert_experiences()
     print("Basketball Team Stats Tool\n\n")
     team_selected = False
     while True:
