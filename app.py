@@ -1,7 +1,6 @@
 import constants
 import random
-
-ALL = list(range(0, 18))
+import copy
 
 
 def main_menu():
@@ -33,8 +32,8 @@ def teams_menu():
     while select_team:
         print("Teams Menu:\n")
         print("0. Main Menu")
-        for index in range(len(constants.TEAMS)):
-            print("{}. {}".format(index + 1, constants.TEAMS[index]))
+        for index in range(len(teams)):
+            print("{}. {}".format(index + 1, teams[index]))
         option = input("\nSelect an option: ")
         print("\n")
         try:
@@ -52,18 +51,19 @@ def teams_menu():
             return option
 
 
-def teams():
+def add_players():
+    all = copy.deepcopy(all_numbers)
     num_players = 0
     team = []
     nums = set()
 
     while len(nums) < 6:
-        nums.add(random.choice(ALL))
+        nums.add(random.choice(all))
 
     for num in nums:
-        team.append(constants.PLAYERS[num]["name"])
+        team.append(players[num]["name"])
         num_players += 1
-        ALL.remove(num)
+        all.remove(num)
 
     return num_players, team
 
@@ -80,11 +80,11 @@ def continue_or_quit():
     return continue_or_quit.lower()
 
 
-def convert_height():
+def convert_heights():
     heights = []
     converted_heights = []
 
-    for player in constants.PLAYERS:
+    for player in players:
         heights.append(player["height"].split())
 
     for index in range(len(heights)):
@@ -95,7 +95,7 @@ def convert_experience():
     experienced = []
     converted_experienced = []
 
-    for player in constants.PLAYERS:
+    for player in players:
         experienced.append(player["experience"])
 
     for index in range(len(experienced)):
@@ -107,19 +107,23 @@ def convert_experience():
 
 
 def stats():
-    num_players, team = teams()
+    num_players, team = add_players()
     print("Total players: {}\n".format(num_players))
     print("Players: {}\n".format(", ".join(team)))
 
 
 def members_available():
-    global ALL
-
-    if len(ALL) == 0:
-        ALL = list(range(0, 18))
+    all = copy.deepcopy(all_numbers)
+    if len(all) == 0:
+        all = list(range(0, 18))
 
 
 if __name__ == "__main__":
+    teams = copy.deepcopy(constants.TEAMS)
+    players = copy.deepcopy(constants.PLAYERS)
+    all_numbers = list(range(0, 18))
+    convert_heights()
+    convert_experience()
     print("Basketball Team Stats Tool\n\n")
     team_selected = False
     while True:
@@ -130,7 +134,7 @@ if __name__ == "__main__":
                 if select_team == 0:
                     break
                 elif select_team == 1:
-                    print("Team: {}\n".format(constants.TEAMS[0]))
+                    print("Team: {}\n".format(teams[0]))
                     members_available()
                     stats()
                     if continue_or_quit() == 'c':
@@ -138,7 +142,7 @@ if __name__ == "__main__":
                     else:
                         break
                 elif select_team == 2:
-                    print("Team: {}\n".format(constants.TEAMS[1]))
+                    print("Team: {}\n".format(teams[1]))
                     members_available()
                     stats()
                     if continue_or_quit() == 'c':
@@ -146,7 +150,7 @@ if __name__ == "__main__":
                     else:
                         break
                 elif select_team == 3:
-                    print("Team: {}\n".format(constants.TEAMS[2]))
+                    print("Team: {}\n".format(teams[2]))
                     members_available()
                     stats()
                     if continue_or_quit() == 'c':
