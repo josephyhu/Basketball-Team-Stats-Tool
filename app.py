@@ -124,7 +124,7 @@ def members_available():
 
 if __name__ == "__main__":
     all_numbers = list(range(0, 18))
-    # Made copies of the constants.TEAMS and constants.PLAYERS
+    # Made copies of constants.TEAMS and constants.PLAYERS
     teams = copy.deepcopy(constants.TEAMS)
     players = copy.deepcopy(constants.PLAYERS)
     # Called the functions that converts heights and experiences respectively.
