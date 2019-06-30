@@ -93,6 +93,9 @@ def convert_heights():
     for index in range(len(heights)):
         converted_heights.append(int(heights[index][0]))
 
+    for index in range(len(players)):
+        players[index]["height"] = converted_heights[index]
+
 
 def convert_experiences():
     experienced = []
@@ -107,6 +110,9 @@ def convert_experiences():
         else:
             experienced[index] = False
         converted_experienced.append(experienced[index])
+
+    for index in range(len(players)):
+        players[index]["experience"] = converted_experienced[index]
 
 
 def stats():
